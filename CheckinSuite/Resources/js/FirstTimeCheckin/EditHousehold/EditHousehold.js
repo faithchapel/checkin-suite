@@ -110,7 +110,7 @@ function FirstTimeCheckinViewModel(householdId, programIds) {
         }).done(function (resp) {
             var response = resp.response;
             if (!resp.isSuccess) {
-                displayAdultAlreadyExsistsLightbox(response.firstName, response.lastName, response.contactId, response.householdId, self.programIds);
+                displayAdultAlreadyExistsLightbox(response.firstName, response.lastName, response.contactId, response.householdId, self.programIds);
             } else {
                 redirectToCheckin(self.householdId, self.programIds);
             }
@@ -161,7 +161,7 @@ function FirstTimeCheckinViewModel(householdId, programIds) {
     }, timeoutLength);
 }
 
-function displayAdultAlreadyExsistsLightbox(firstName, lastName, contactId, householdId, programIds) {
+function displayAdultAlreadyExistsLightbox(firstName, lastName, contactId, householdId, programIds) {
     var html = "<form id='swalForm' class='pure-form'>" +
         "Looks like " + firstName + " " + lastName + " is already in our system. Would you like to request they be added to this family?<br><br>" +
         "If so, please provide a brief description of relationship to this family<br><br>" +
@@ -198,7 +198,7 @@ function displayAdultAlreadyExsistsLightbox(firstName, lastName, contactId, hous
                 contentType: "application/json",
                 data: JSON.stringify({
                     ContactId: $("#contactId").val(),
-                    NoteTitle:"Request to Add Exsisting Contact to Household",
+                    NoteTitle:"Request to Add Existing Contact to Household",
                     NoteText: "The Contact has been requested to be added to Household #"+$("#householdId").val()+". Review and make necessary changes. User Explanation:" + $("#note").val(),
                     ContactPhone: $("#phone").val()
                 })

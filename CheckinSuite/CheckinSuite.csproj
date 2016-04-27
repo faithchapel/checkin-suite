@@ -134,11 +134,6 @@
     <Compile Include="Models\LightboxSelectItem.cs" />
     <Compile Include="Models\ParticipatingHouseholdMemberModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\mpapi\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Content Include="Resources\css\print.css" />
     <Content Include="Resources\css\normalize.css" />
   </ItemGroup>
@@ -183,31 +178,6 @@
     <Content Include="Resources\js\lib\validation.js" />
     <Content Include="Resources\js\Shared\redirectWithPreserve.js" />
     <Content Include="Resources\js\Shared\ValidatePinModel.js" />
-    <None Include="Service References\mpapi\Api.disco" />
-    <Content Include="Service References\mpapi\CheckinSuite.mpapi.AttachFileResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\mpapi\CheckinSuite.mpapi.AuthenticateContactGUIDResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\mpapi\CheckinSuite.mpapi.AuthenticateGUIDSResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\mpapi\CheckinSuite.mpapi.AuthenticateUserResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\mpapi\CheckinSuite.mpapi.FindOrCreateUserAccountResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\mpapi\CheckinSuite.mpapi.ResetPasswordResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\mpapi\configuration91.svcinfo" />
-    <None Include="Service References\mpapi\configuration.svcinfo" />
-    <None Include="Service References\mpapi\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -228,16 +198,6 @@
     <Content Include="Views\Shared\KnockoutTemplates.cshtml" />
     <Content Include="Views\FirstTimeCheckin\Setup.cshtml" />
     <Content Include="Views\Checkin\Setup.cshtml" />
-    <None Include="Service References\mpapi\Api.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\mpapi\Api1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\mpapi\Api2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\mpapi\ApiService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -250,9 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\mpapi\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

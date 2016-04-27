@@ -23,7 +23,7 @@ function Item(data, root, parent) {
 
     self.isRoot = false; // used for displaying back button
 
-    // will be null if doesn't exsist
+    // will be null if doesn't Exist
     self.title = ko.observable(data.title);
     self.value = ko.observable(data.value);
 

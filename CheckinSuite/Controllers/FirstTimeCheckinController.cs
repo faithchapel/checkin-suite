@@ -94,7 +94,7 @@ namespace CheckinSuite.Controllers
             {
                 foreach (ChildHouseholdMember child in data.Children)
                 {
-                    if (child.HasContact()) // Does child already exsist?
+                    if (child.HasContact()) // Does child already Exist?
                     {
                         if (!child.ParticipantId.HasValue)
                         {
