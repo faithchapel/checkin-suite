@@ -5,13 +5,18 @@ This application interfaces with ministry platform to check people into events, 
 
 ### Service Reference
 To configure the application, first open the Visual Studio project. 
+
 Click Project->Add Service Reference.
+
 Add your MP Soap API service URL in the Address field.
+
 Add the name "mpapi" in the namespace field.
+
 Click Ok.
 
 ### Environment Settings
-In the CheckInSuite\Config directory open the Environment.config file
+In the CheckInSuite\Config directory open the Environment.config file.
+
 Change the variables to reflect your API credentials and settings in your environment.
 
 
