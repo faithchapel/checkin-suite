@@ -249,7 +249,7 @@ namespace CheckinSuite
         {
 
 
-            DataSet storedProcResult = api.ExecuteStoredProcedure(apiGUID, apiPassword, "api_Faith_FirstTimeCheckin", requestString);
+            DataSet storedProcResult = api.ExecuteStoredProcedure(apiGUID, apiPassword, "api_Faith_CheckInSuite", requestString);
 
             DataTable dTable = storedProcResult.Tables[0];
 

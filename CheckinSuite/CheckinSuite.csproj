@@ -148,8 +148,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
     <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
-    <Content Include="Environment.config" />
-    <Content Include="ClientEndpoints.config" />
+    <Content Include="Config\ClientEndpoints.config" />
+    <Content Include="Config\Environment.config" />
     <None Include="Properties\PublishProfiles\fcweb2.pubxml" />
     <None Include="Service References\mpapi\Api.disco" />
     <Content Include="Resources\css\gravitons.css" />
