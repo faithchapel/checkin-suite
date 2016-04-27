@@ -67,4 +67,4 @@ This data note is created when a pin is used to manually check someone in
 | Header | "Tag Override" |
 | Note | "[Added To Group: {groupId}]" |
 | ContactPhone | null |
-| RecordedBy | {User_Id of whoes pin was used} |
+| RecordedBy | {User_Id of whose pin was used} |
