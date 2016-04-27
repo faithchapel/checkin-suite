@@ -1,4 +1,4 @@
-# Checkin-Suite
+# Check-In Suite
 This application interfaces with ministry platform to check people into events, create new families, and let families request their information to be updated.
 
 # Database Modifications
@@ -11,14 +11,14 @@ In the users table we added a Pin field. Simply add an nullable integer field ca
 ### Data Notes
 We added a table called Data_Notes. Any data checkin adds/modifies will go in here for someone to review.
 
-| Field Title  | Field Type   | Relation                | Allow Null | 
-| ------------ | ------------ | ----------------------- | ---------- |
-|DataNoteID    |int           |                         | False      |
-|RelatedContact|int           |Contacts -> Contact_ID   | False      |
-|Header        |nvarchar(50)  |                         | True       |
-|Note          |nvarchar(MAX) |                         | True       |
-|ContactPhone  |invarchar(13) |                         | True       |
-|RecordedBy    |int           |dp_Users -> User_ID      | True       |
-|Closed        |bit           |                         | True       |
-|Domain_ID     |int           |                         | False      |
+| Field Title  | Field Type   | Relation                | Allow Null | Description  |
+| ------------ | ------------ | ----------------------- | ---------- | ------------ |
+|DataNoteID    |int           |                         | False      | the foreign key |
+|RelatedContact|int           |Contact_ID               | False      | the contact that this data note relates to |
+|Header        |nvarchar(50)  |                         | True       | a basic generalization of what this note is about |
+|Note          |nvarchar(MAX) |                         | True       | the information about this note |
+|ContactPhone  |invarchar(13) |                         | True       | a phone number to call for questions |
+|RecordedBy    |int           |User_ID                  | True       | who made this data note |
+|Closed        |bit           |                         | True       | has this data note been followed up on |
+|Domain_ID     |int           |                         | False      | the domain id |
 
