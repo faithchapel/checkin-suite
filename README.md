@@ -6,7 +6,11 @@ This application interfaces with ministry platform to check people into events, 
 We added a few things to the exsisting ministry platform database for this application to use. For checkin-suite to work you will make these changes.
 
 ### Users
-In the users table we added a Pin field. Simply add an nullable integer field called Pin to the dp_Users table
+In the users table we added a Pin field. Simply add the following to the dp_Users table
+
+| Field Title  | Field Type   | Relation                | Allow Null | Description  |
+| ------------ | ------------ | ----------------------- | ---------- | ------------ |
+|Pin           |int           |                         | True      | the override pin |
 
 ### Data Notes
 We added a table called Data_Notes. Any data checkin adds/modifies will go in here for someone to review.
