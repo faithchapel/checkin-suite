@@ -52,13 +52,13 @@ When the user has edited a contact in their family these notes are created
 | Note | {topic} [{topic text}: {users response}] |
 | ContactPhone | {phone to contact} |
 
-#### Exsisting Contact Added to Household
+#### Existing Contact Added to Household
 When a child that already exsists is added to a family, this data note is created
 
 | Field | Description |
 | ----- | ------------|
 | RelatedContact | {contactId of the child who was added to a household} |
-| Header | "Exsisting Contact Added to Household" |
+| Header | "Existing Contact Added to Household" |
 | Note | "A Contact_Household record was created to pair this contact to {householdId} household. If this is correct reassign this contact to the new household, otherwise change Other Household relationship to 'Guest' or 'Grandchild'." |
 | ContactPhone | null |
 
