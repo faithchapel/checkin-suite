@@ -134,13 +134,13 @@
     <Compile Include="Models\LightboxSelectItem.cs" />
     <Compile Include="Models\ParticipatingHouseholdMemberModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Resources\css\print.css" />
-    <Content Include="Resources\css\normalize.css" />
     <Compile Include="Service References\mpapi\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Content Include="Resources\css\print.css" />
+    <Content Include="Resources\css\normalize.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -148,10 +148,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
     <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
-    <Content Include="Config\ClientEndpoints.config" />
+    <Content Include="Config\Bindings.config" />
     <Content Include="Config\Environment.config" />
+    <Content Include="Config\Clients.config" />
     <None Include="Properties\PublishProfiles\fcweb2.pubxml" />
-    <None Include="Service References\mpapi\Api.disco" />
     <Content Include="Resources\css\gravitons.css" />
     <Content Include="Resources\css\pure.css" />
     <Content Include="Resources\css\skin.css" />
@@ -183,6 +183,7 @@
     <Content Include="Resources\js\lib\validation.js" />
     <Content Include="Resources\js\Shared\redirectWithPreserve.js" />
     <Content Include="Resources\js\Shared\ValidatePinModel.js" />
+    <None Include="Service References\mpapi\Api.disco" />
     <Content Include="Service References\mpapi\CheckinSuite.mpapi.AttachFileResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -217,12 +218,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <None Include="Service References\mpapi\Api1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\mpapi\Api2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\FirstTimeCheckin\EditHousehold.cshtml" />
     <Content Include="Views\FirstTimeCheckin\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -233,6 +228,16 @@
     <Content Include="Views\Shared\KnockoutTemplates.cshtml" />
     <Content Include="Views\FirstTimeCheckin\Setup.cshtml" />
     <Content Include="Views\Checkin\Setup.cshtml" />
+    <None Include="Service References\mpapi\Api.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\mpapi\Api1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\mpapi\Api2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\mpapi\ApiService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -248,12 +253,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\mpapi\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\mpapi\Api.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\mpapi\ApiService.wsdl" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

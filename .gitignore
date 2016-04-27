@@ -19,6 +19,7 @@ bld/
 [Cc]onfig/
 [Bb]in/
 [Oo]bj/
+[Ss]ervice References/
 .vs/
 
 # Roslyn cache directories
