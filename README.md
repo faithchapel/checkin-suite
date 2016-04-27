@@ -53,7 +53,7 @@ When the user has edited a contact in their family these notes are created
 | ContactPhone | {phone to contact} |
 
 #### Existing Contact Added to Household
-When a child that already exsists is added to a family, this data note is created
+When a child that already exists is added to a family, this data note is created
 
 | Field | Description |
 | ----- | ------------|
