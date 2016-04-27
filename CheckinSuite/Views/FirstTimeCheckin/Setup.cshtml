@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Resources/js/lib/dentist.js"></script>
+
+<script>
+
+    $(function () {
+        Cookies.set('stationType', 'firstTimeCheckin');
+        redirectWithPreserve("/FirstTimeCheckin/Index");
+    });
+
+</script>

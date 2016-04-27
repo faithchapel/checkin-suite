@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://thinkministry.com/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ApiService" targetNamespace="http://thinkministry.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_apiSoap_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://thinkministry.com/Imports">
+      <xsd:import schemaLocation="https://my.faithchapel.cc/MinistryPlatformApi/Api.svc?xsd=xsd0" namespace="http://thinkministry.com/" />
+      <xsd:import schemaLocation="https://my.faithchapel.cc/MinistryPlatformApi/Api.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://my.faithchapel.cc/MinistryPlatformApi/Api.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AuthenticateUserRequest">
+    <wsdl:part name="parameters" element="tns:AuthenticateUser" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserResponse">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateGUIDSRequest">
+    <wsdl:part name="parameters" element="tns:AuthenticateGUIDS" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateGUIDSResponse">
+    <wsdl:part name="parameters" element="tns:AuthenticateGUIDSResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateContactGUIDRequest">
+    <wsdl:part name="parameters" element="tns:AuthenticateContactGUID" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateContactGUIDResponse">
+    <wsdl:part name="parameters" element="tns:AuthenticateContactGUIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_GetDomainGUID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDomainGUID" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_GetDomainGUID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDomainGUIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_GetUserInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_GetUserInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindOrCreateUserAccountRequest">
+    <wsdl:part name="parameters" element="tns:FindOrCreateUserAccount" />
+  </wsdl:message>
+  <wsdl:message name="FindOrCreateUserAccountResponse">
+    <wsdl:part name="parameters" element="tns:FindOrCreateUserAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAccountRequest">
+    <wsdl:part name="parameters" element="tns:UpdateUserAccount" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAccountResponse">
+    <wsdl:part name="parameters" element="tns:UpdateUserAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_UpdateUserPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_UpdateUserPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetPasswordRequest">
+    <wsdl:part name="parameters" element="tns:ResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="ResetPasswordResponse">
+    <wsdl:part name="parameters" element="tns:ResetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="AttachFileRequest">
+    <wsdl:part name="parameters" element="tns:AttachFile" />
+  </wsdl:message>
+  <wsdl:message name="AttachFileResponse">
+    <wsdl:part name="parameters" element="tns:AttachFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_UpdateDefaultImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDefaultImage" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_UpdateDefaultImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDefaultImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_AddRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecord" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_AddRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_UpdateRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRecord" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_UpdateRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_ExecuteStoredProcedure_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteStoredProcedure" />
+  </wsdl:message>
+  <wsdl:message name="apiSoap_ExecuteStoredProcedure_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteStoredProcedureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRecurringRecordsRequest">
+    <wsdl:part name="parameters" element="tns:GetRecurringRecords" />
+  </wsdl:message>
+  <wsdl:message name="GetRecurringRecordsResponse">
+    <wsdl:part name="parameters" element="tns:GetRecurringRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstDateInSeriesRequest">
+    <wsdl:part name="parameters" element="tns:GetFirstDateInSeries" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstDateInSeriesResponse">
+    <wsdl:part name="parameters" element="tns:GetFirstDateInSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRecurringRecordsRequest">
+    <wsdl:part name="parameters" element="tns:AddRecurringRecords" />
+  </wsdl:message>
+  <wsdl:message name="AddRecurringRecordsResponse">
+    <wsdl:part name="parameters" element="tns:AddRecurringRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="FileService_GetFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFile" />
+  </wsdl:message>
+  <wsdl:message name="FileService_GetFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileResponse" />
+  </wsdl:message>
+  <wsdl:portType name="apiSoap">
+    <wsdl:operation name="AuthenticateUser">
+      <wsdl:input wsaw:Action="http://thinkministry.com/AuthenticateUser" name="AuthenticateUserRequest" message="tns:AuthenticateUserRequest" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/AuthenticateUserResponse" name="AuthenticateUserResponse" message="tns:AuthenticateUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateGUIDS">
+      <wsdl:input wsaw:Action="http://thinkministry.com/AuthenticateGUIDS" name="AuthenticateGUIDSRequest" message="tns:AuthenticateGUIDSRequest" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/AuthenticateGUIDSResponse" name="AuthenticateGUIDSResponse" message="tns:AuthenticateGUIDSResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateContactGUID">
+      <wsdl:input wsaw:Action="http://thinkministry.com/AuthenticateContactGUID" name="AuthenticateContactGUIDRequest" message="tns:AuthenticateContactGUIDRequest" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/AuthenticateContactGUIDResponse" name="AuthenticateContactGUIDResponse" message="tns:AuthenticateContactGUIDResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDomainGUID">
+      <wsdl:input wsaw:Action="http://thinkministry.com/GetDomainGUID" message="tns:apiSoap_GetDomainGUID_InputMessage" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/GetDomainGUIDResponse" message="tns:apiSoap_GetDomainGUID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input wsaw:Action="http://thinkministry.com/GetUserInfo" message="tns:apiSoap_GetUserInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/GetUserInfoResponse" message="tns:apiSoap_GetUserInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindOrCreateUserAccount">
+      <wsdl:input wsaw:Action="http://thinkministry.com/FindOrCreateUserAccount" name="FindOrCreateUserAccountRequest" message="tns:FindOrCreateUserAccountRequest" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/FindOrCreateUserAccountResponse" name="FindOrCreateUserAccountResponse" message="tns:FindOrCreateUserAccountResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAccount">
+      <wsdl:input wsaw:Action="http://thinkministry.com/UpdateUserAccount" name="UpdateUserAccountRequest" message="tns:UpdateUserAccountRequest" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/UpdateUserAccountResponse" name="UpdateUserAccountResponse" message="tns:UpdateUserAccountResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserPassword">
+      <wsdl:input wsaw:Action="http://thinkministry.com/UpdateUserPassword" message="tns:apiSoap_UpdateUserPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/UpdateUserPasswordResponse" message="tns:apiSoap_UpdateUserPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input wsaw:Action="http://thinkministry.com/ResetPassword" name="ResetPasswordRequest" message="tns:ResetPasswordRequest" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/ResetPasswordResponse" name="ResetPasswordResponse" message="tns:ResetPasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AttachFile">
+      <wsdl:input wsaw:Action="http://thinkministry.com/AttachFile" name="AttachFileRequest" message="tns:AttachFileRequest" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/AttachFileResponse" name="AttachFileResponse" message="tns:AttachFileResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDefaultImage">
+      <wsdl:input wsaw:Action="http://thinkministry.com/UpdateDefaultImage" message="tns:apiSoap_UpdateDefaultImage_InputMessage" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/UpdateDefaultImageResponse" message="tns:apiSoap_UpdateDefaultImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecord">
+      <wsdl:input wsaw:Action="http://thinkministry.com/AddRecord" message="tns:apiSoap_AddRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/AddRecordResponse" message="tns:apiSoap_AddRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecord">
+      <wsdl:input wsaw:Action="http://thinkministry.com/UpdateRecord" message="tns:apiSoap_UpdateRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/UpdateRecordResponse" message="tns:apiSoap_UpdateRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteStoredProcedure">
+      <wsdl:input wsaw:Action="http://thinkministry.com/ExecuteStoredProcedure" message="tns:apiSoap_ExecuteStoredProcedure_InputMessage" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/ExecuteStoredProcedureResponse" message="tns:apiSoap_ExecuteStoredProcedure_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurringRecords">
+      <wsdl:input wsaw:Action="http://thinkministry.com/GetRecurringRecords" name="GetRecurringRecordsRequest" message="tns:GetRecurringRecordsRequest" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/GetRecurringRecordsResponse" name="GetRecurringRecordsResponse" message="tns:GetRecurringRecordsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstDateInSeries">
+      <wsdl:input wsaw:Action="http://thinkministry.com/GetFirstDateInSeries" name="GetFirstDateInSeriesRequest" message="tns:GetFirstDateInSeriesRequest" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/GetFirstDateInSeriesResponse" name="GetFirstDateInSeriesResponse" message="tns:GetFirstDateInSeriesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecurringRecords">
+      <wsdl:input wsaw:Action="http://thinkministry.com/AddRecurringRecords" name="AddRecurringRecordsRequest" message="tns:AddRecurringRecordsRequest" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/apiSoap/AddRecurringRecordsResponse" name="AddRecurringRecordsResponse" message="tns:AddRecurringRecordsResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="FileService">
+    <wsdl:operation name="GetFile">
+      <wsdl:input wsaw:Action="http://thinkministry.com/FileService/GetFile" message="tns:FileService_GetFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://thinkministry.com/FileService/GetFileResponse" message="tns:FileService_GetFile_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_apiSoap" type="tns:apiSoap">
+    <wsp:PolicyReference URI="#BasicHttpBinding_apiSoap_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthenticateUser">
+      <soap:operation soapAction="http://thinkministry.com/AuthenticateUser" style="document" />
+      <wsdl:input name="AuthenticateUserRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AuthenticateUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateGUIDS">
+      <soap:operation soapAction="http://thinkministry.com/AuthenticateGUIDS" style="document" />
+      <wsdl:input name="AuthenticateGUIDSRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AuthenticateGUIDSResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateContactGUID">
+      <soap:operation soapAction="http://thinkministry.com/AuthenticateContactGUID" style="document" />
+      <wsdl:input name="AuthenticateContactGUIDRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AuthenticateContactGUIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomainGUID">
+      <soap:operation soapAction="http://thinkministry.com/GetDomainGUID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap:operation soapAction="http://thinkministry.com/GetUserInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindOrCreateUserAccount">
+      <soap:operation soapAction="http://thinkministry.com/FindOrCreateUserAccount" style="document" />
+      <wsdl:input name="FindOrCreateUserAccountRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="FindOrCreateUserAccountResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAccount">
+      <soap:operation soapAction="http://thinkministry.com/UpdateUserAccount" style="document" />
+      <wsdl:input name="UpdateUserAccountRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateUserAccountResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserPassword">
+      <soap:operation soapAction="http://thinkministry.com/UpdateUserPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <soap:operation soapAction="http://thinkministry.com/ResetPassword" style="document" />
+      <wsdl:input name="ResetPasswordRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ResetPasswordResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AttachFile">
+      <soap:operation soapAction="http://thinkministry.com/AttachFile" style="document" />
+      <wsdl:input name="AttachFileRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AttachFileResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDefaultImage">
+      <soap:operation soapAction="http://thinkministry.com/UpdateDefaultImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecord">
+      <soap:operation soapAction="http://thinkministry.com/AddRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecord">
+      <soap:operation soapAction="http://thinkministry.com/UpdateRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteStoredProcedure">
+      <soap:operation soapAction="http://thinkministry.com/ExecuteStoredProcedure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurringRecords">
+      <soap:operation soapAction="http://thinkministry.com/GetRecurringRecords" style="document" />
+      <wsdl:input name="GetRecurringRecordsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetRecurringRecordsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstDateInSeries">
+      <soap:operation soapAction="http://thinkministry.com/GetFirstDateInSeries" style="document" />
+      <wsdl:input name="GetFirstDateInSeriesRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetFirstDateInSeriesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecurringRecords">
+      <soap:operation soapAction="http://thinkministry.com/AddRecurringRecords" style="document" />
+      <wsdl:input name="AddRecurringRecordsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddRecurringRecordsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ApiService">
+    <wsdl:port name="BasicHttpBinding_apiSoap" binding="tns:BasicHttpBinding_apiSoap">
+      <soap:address location="https://my.faithchapel.cc/MinistryPlatformApi/Api.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

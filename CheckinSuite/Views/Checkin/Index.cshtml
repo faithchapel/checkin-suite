@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        $("#phoneNumber").focus();
+    });
+</script>
+<div class="center margin-bottom" style="padding:15vh 0;">
+    <div class="h1 w3">Check In</div>
+    <div class="h3 mb2" data-bind="html: eventTitles"></div>
+    <form class="pure-form" id="searchForm">
+        <div class="block-small">
+
+            <input type="text" id="phoneNumber" style="width:30%" data-bind="textInput: phone, hasFocus: true, css: {'validation-error': phone.hasError}" placeholder="Phone Number or Last Name, First Name" /><br />
+
+            <input type="submit" value="Search" data-bind="click: submit" class="pure-button pure-button-primary mt3" />
+        </div>
+    </form>
+</div>
+
+<div data-bind="template: {name: 'validatePin-template', data: validatePinLightbox}"></div>
+
+
+<script src="~/Resources/js/lib/knockout.js"></script>
+<script src="~/Resources/js/lib/kavie.js"></script>
+<script src="~/Resources/js/lib/sweetalert2.min.js"></script>
+<script src="~/Resources/js/lib/dentist.js"></script>
+
+<script src="~/Resources/js/Shared/ValidatePinModel.js"></script>
+
+<script src="~/Resources/js/Checkin/Index.js"></script>
+
+
+<script>
+    run();
+</script>

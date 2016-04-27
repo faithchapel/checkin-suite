@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "index";
+}
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300' rel='stylesheet' type='text/css'>
+<link href="~/Resources/css/skin.css" rel="stylesheet" />
+<link href="~/Resources/css/gravitons.css" rel="stylesheet" />
+<style>
+    .cont {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height:100%;
+    }
+    .left, .right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 50%;
+        font-size: 6rem;
+        font-weight: 200;
+        height: 100%;
+        color:#FFF;
+    }
+
+    .left:hover, .right:hover{
+        opacity:.7;
+    }
+    .left {
+        text-align: center;
+        background-color: #10C2CC;
+    }
+    .right {
+        text-align: center;
+        background-color: #FF944D;
+    }
+</style>
+
+<div class="cont">
+    <div class="left" onclick="window.location='/FirstTimeCheckin/Setup?programIds=59-6'">First Time<br> Checkin</div>
+    <div class="right" onclick="window.location='/Checkin/Setup?programIds=59-6'">Checkin</div>
+</div>

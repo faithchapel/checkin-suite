@@ -1,0 +1,101 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Resources/css/print.css" rel="stylesheet" />
+<div style="height:100%;display:flex;justify-content:center; align-items:center;">
+    <div class="content">
+        <div class="h1 w3">Printing...</div>
+        <div class="h3 mt3">
+            
+
+            <input type="button" class="pure-button" value="Back To Search" onclick="window.location = '@ViewBag.redirectUrl'">
+           
+            
+        </div>
+    </div>
+</div>
+
+@* print-area is hidden via jquery *@
+<div class="print-area">
+    @foreach (CheckinSuite.Controllers.TagData data in ViewBag.dataList)
+    {
+        <div class="tag">
+            <div class="tag-content">
+                <span class="person-fname">@data.Nickname</span>
+                <br>
+                <span class="person-lname">@data.LastName</span>
+                <br>
+                <br>
+                <span class="group-name">@data.GroupName</span>
+                <br>
+                <div class="h6">@data.EventTitle</div>
+                <div class="attended-dots-container">
+                    @if (data.TimesAttended <= 5)
+                    {
+                        for (int i = 0; i < data.TimesAttended; i++)
+                        {
+                            <div class="attended-dot"></div>
+                        }  
+                    }
+                </div>
+            </div>
+        </div>
+
+        if (data.SecureCheckin == "True")
+        {
+            <div class="tag tag-left-bar">
+                <div class="left-bar"><div class="left-bar-text">Classroom</div></div>
+                <div class="tag-content">
+                    
+                    <div class="person-name">@data.Nickname @data.LastName</div>
+                    <div class="h6">
+                        <div>
+                            Guardian: @data.GuardianOne 
+                            @if(data.GuardianTwo != null){
+                                Html.Raw("&" + data.GuardianTwo);
+                            }
+                         </div>
+                        <div>Call #: @data.ContactId</div>
+                        <div>@data.TimeIn</div>
+                        <div>@data.GroupName</div>
+                        <div>@data.EventTitle</div>
+                    </div>
+                </div>
+            </div>
+
+            if (data.SupressParentTag == "False")
+            {
+                <div class="tag">
+                    <div class="left-bar"><div class="left-bar-call-number">Call #: @data.ContactId</div></div>
+                    <div class="tag-content center">
+                        <div class="mb1 h3">Parent Pick-Up</div>
+                        <div class="h6">Please keep this tag until you are<br> ready to pick up your child.</div>
+                        <div class="h6">@data.TimeIn</div>
+                        <div class="h6">@data.EventTitle</div>
+                        <div class="h6 mt1">
+                            @data.Nickname
+                            @data.LastName
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+       
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        window.print();
+        $(".print-area").hide();
+        
+        var idleManager = new IdleListenerManager();
+        idleManager.add(function () {
+            window.location = '@ViewBag.redirectUrl';
+        }, 5000);
+
+    });
+</script>

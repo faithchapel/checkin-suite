@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "KnockoutTemplates";
+}
+
+
+<script type="text/html" id="lightboxSelection-template">
+    <div class="lightbox" data-bind="visible: isVisible">
+        <div class="lightbox-content">
+            <div class="h3" data-bind="text: itemRoot().currentItem().title"></div>
+            <div class="back-button" data-bind="visible: isLowerLevel, click: backButtonClicked">
+                <i class="fa fa-chevron-left"></i>
+            </div>
+            <div class="close-button" data-bind="click: hideLightbox">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="center" data-bind="foreach: itemRoot().currentItem().items">
+                <div class="grade-option" data-bind="click: itemClicked, attr: {style: 'background-color:' + color() }">
+                    <div data-bind="text: title"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="validatePin-template">
+
+    <div class="lightbox" data-bind="visible: isVisible">
+        <div class="lightbox-content">
+            <div class="close-button" data-bind="click: hideLightbox">
+                <i class="fa fa-times"></i>
+            </div>
+            <form data-bind="submit: validatePin" class="pure-form">
+                Enter Pin:<br><br>
+                <input type="password" data-bind="value: pin" class="pin-input">
+                <br><br>
+                <input type="submit" value="Enter" class="pure-button pure-button-primary">
+            </form>
+        </div>
+    </div>
+
+</script>
+
+

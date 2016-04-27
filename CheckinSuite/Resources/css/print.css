@@ -1,0 +1,80 @@
+﻿@media print {
+    .header {
+        display:none;
+    }
+    .print-area {
+        display:block !important;
+    }
+    .content {
+        display:none;
+    }
+}
+
+.content {
+    text-align:center;
+    padding: 20vh 0;
+}
+
+.tag-content {
+    flex-grow: 1;
+    text-align:center;
+}
+
+.tag {
+    width: 3.9in; 
+	height: 2.125in; 
+	margin: 0in; 
+	page-break-after: always;
+	overflow: hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.left-bar {
+    height: 2.125in;
+    width: 40px;
+    background-color: black;
+    white-space:nowrap;
+
+}
+
+.left-bar-text {
+    color:#FFF;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    margin-top: 1.3in;
+    margin-left: -.03in;
+}
+
+.left-bar-call-number {
+     color:#FFF;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    margin-top: 1.5in;
+    margin-left: -.03in;
+}
+
+.person-fname {
+    font-size:2rem;
+}
+
+.person-lname {
+    font-size:1rem;
+}
+.attended-dots-container{
+    text-align:left;
+}
+
+.attended-dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #000;
+    display:inline-block;
+}

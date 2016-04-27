@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="~/Resources/js/lib/js-cookie.js"></script>
+    <script src="~/Resources/js/Shared/idleListener.js"></script>
+    <script src="~/Resources/js/Shared/redirectWithPreserve.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <link href="~/Resources/css/normalize.css" rel="stylesheet" />
+    <link href="~/Resources/css/gravitons.css" rel="stylesheet" />
+    <link href="~/Resources/css/skin.css" rel="stylesheet" />
+    <link href="~/Resources/css/sweetalert2.css" rel="stylesheet" />
+    <link href="~/Resources/css/pure.css" rel="stylesheet" />
+
+
+</head>
+<body> @*oncontextmenu="return false"*@
+    
+    <div class="header center" style="font-size: 2rem;">
+        @ViewBag.Title
+    </div>
+
+        @Html.Partial("KnockoutTemplates")
+
+        @RenderBody()
+
+    <script>
+        $(function () {
+            $(".header").click(function (e) {
+                if (e.altKey) {
+                    alert("stationType Cookie: " + Cookies.get('stationType'));
+                }
+            });
+        });
+
+    </script>
+
+
+    <script src="~/Resources/js/lib/skel/skel.js"></script>
+    <script src="~/Resources/js/lib/skel/skel-layout.js"></script>
+    <script src="~/Resources/js/lib/skel/initializeSkel.js"></script>
+
+</body>
+</html>

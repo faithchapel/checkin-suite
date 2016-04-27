@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+    $(function () {
+        Cookies.set('stationType', 'checkin');
+        redirectWithPreserve("/Checkin/Index");
+    });
+
+</script>

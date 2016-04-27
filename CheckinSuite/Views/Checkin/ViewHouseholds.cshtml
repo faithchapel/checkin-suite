@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "Check In";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mt1 pb2">
+
+    <div class="center mb1">
+        <div class="h3 mb1">Please select who is checking in</div>
+        <hr>
+        <div style="left:0" class="fl family-increment-buttons" data-bind="click: prevFamily, visible: (householdIds().length > 1) && (currentHousehold.index() != 0)"><i class="fa fa-chevron-left"></i></div>
+        <div style="right:0" class="family-increment-buttons" data-bind="click: nextFamily, visible: (householdIds().length > 1) && (currentHousehold.index() + 1 < householdIds().length)"><i class="fa fa-chevron-right"></i></div>
+        <span style="font-size:2.5rem" class="w2" data-bind="text: currentHousehold.name"></span>
+    </div>
+
+    <div class="grid-container">
+
+        <!-- ko foreach: currentHousehold.householdMembers -->
+        <div data-bind="if: householdPosition == 1">
+            <div class="person-grid-block" data-bind="click: personClicked.bind($index), holdClick: function(){personHeld($index)}, css:{disabled: !canCheckin(), 'checked-in': isAlreadyCheckedIn || selectedEvent() != null}">
+                <div style="width:100%">
+                    <i class="checked-in-icon fa fa-check" data-bind="visible: isAlreadyCheckedIn || selectedEvent() != null"></i>
+                    <i class="fa fa-user h2 ml1 mr1 fl"></i>
+                    <div class="mt1 pb2">
+                        <span data-bind="text: firstName"></span><br>
+                        <span class="h6" data-bind="text: lastName"></span>
+                    </div>
+                    <div data-bind="if: selectedEvent() != null">
+                        <!--ko fadeIn: true-->
+                        <div class="events-container" data-bind="css: {'checked-in': selectedEvent() != null}">
+                            <div data-bind="text: selectedEvent().groupName"></div>
+                            <div class="h6" data-bind="text: selectedEvent().eventTitle"></div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+
+    <div class="grid-container">
+        <!-- ko foreach: currentHousehold.householdMembers -->
+        <div data-bind="if: (householdPosition != 1)">
+            <div class="person-grid-block" data-bind="click: personClicked.bind($index), holdClick: function(){personHeld($index)}, css:{disabled: !canCheckin(), 'checked-in': isAlreadyCheckedIn || selectedEvent() != null}">
+                <div style="width:100%">
+                    <i class="checked-in-icon fa fa-check" data-bind="visible: isAlreadyCheckedIn || selectedEvent() != null"></i>
+                    <span class="person-icon-guest-text" data-bind="if: householdPosition == 5 || householdPosition == 8">Guest</span>
+                    <i class="fa fa-user h2 ml1 mr1 fl"></i>
+                    <div class="mt1 pb2">
+                        <span data-bind="text: firstName"></span><br>
+                        <span class="h6" data-bind="text: lastName"></span>
+                    </div>
+                    <div data-bind="if: selectedEvent() != null">
+                        <!--ko fadeIn: true-->
+                        <div class="events-container" data-bind="css: {'checked-in': selectedEvent() != null}">
+                            <div data-bind="text: selectedEvent().groupName"></div>
+                            <div class="h6" data-bind="text: selectedEvent().eventTitle"></div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+</div>
+
+<div style="font-size:1.7rem;">
+    <input type="button" class="pure-button pure-button-primary submit-checkin-button" value="Complete and Print" data-bind="click: submit" />
+    <i class="loader fa fa-spinner fa-pulse fa-2x submit-checkin-button" style="display: none; margin-right: 2.9rem;"></i>
+    <input type="button" id="backToSearchButton" class="pure-button mt1 back-to-search-button" value="Back to Search" data-bind="click: backToSearchButtonClick" />
+</div>
+
+@* Select Event lightbox *@
+<div data-bind="if: selectEventModel.lightboxVisible">
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <div class="close-button" data-bind="click: selectEventModel.hideLightbox">
+                <i class="fa fa-times"></i>
+            </div>
+            <div data-bind="foreach: selectEventModel.events">
+                <div class="edit-person-option" data-bind="visible: !isCheckinClosed(),click: selectEventModel.eventClicked.bind($index())">
+                    <div data-bind="text: groupName"></div>
+                    <div class="h3" data-bind="text: groupRoleTitle"></div>
+                    <div class="h5" data-bind="text: eventTitle"></div>
+                </div>
+            </div>
+            <input type="button" class="pure-button pure-button-primary" value="Clear" data-bind="click: selectEventModel.clearEvent, visible: selectEventModel.person.selectedEvent() != null" />
+        </div>
+    </div>
+</div>
+
+@* Manual Print lightbox *@
+<div data-bind="with: manualTagPrintLightbox">
+    <div data-bind="template: {name: 'validatePin-template', data: manualTagPrintLightbox.validatePinLightbox}"></div>
+    <div class="lightbox" data-bind="visible: isVisible">
+        <div class="lightbox-content">
+            <div class="center" style="font-size:2.5rem" data-bind="html: name"></div>
+
+            <div class="close-button" data-bind="click: hideLightbox">
+                <i class="fa fa-times"></i>
+            </div>
+
+            <form data-bind="submit: submit">
+                <input type="button" value="Select an Event" class="lightbox-button pure-button mt3" data-bind="click: selectEventLightbox.showLightbox,
+                                                                                                                value: selectEventLightbox.buttonText,
+                                                                                                                attr:{'style': 'background-color:' + selectEventLightbox.buttonColor()},
+                                                                                                                css:{'validation-error': event.hasError}">
+
+                <input type="button" value="Select Grade" class="lightbox-button pure-button mt3" data-bind="click: selectGradeLightbox.showLightbox,
+                                                                                                                value: selectGradeLightbox.buttonText,
+                                                                                                                attr:{'style': 'background-color:' + selectGradeLightbox.buttonColor()},
+                                                                                                                css:{'validation-error': grade.hasError}">
+                <br>
+                <input type="text" class="mt2 pure-input" style="width: 30rem; height: 10rem;" data-bind="value: note" />
+                <br>
+
+                <div class="mt2">
+                    <input type="checkbox" data-bind="checked: createGroupParticipant" class="group-participant-checkbox" /> <span class="group-participant-text">Make this change permanent</span><br>
+                    <input type="submit" id="manualTagPrintSubmitButton" class="mt2 pure-button pure-button-primary" value="Submit" />
+                </div>
+
+            </form>
+
+            <div data-bind="template: {name: 'lightboxSelection-template', data: selectEventLightbox}"></div>
+            <div data-bind="template: {name: 'lightboxSelection-template', data: selectGradeLightbox}"></div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Resources/js/lib/knockout.js"></script>
+<script src="~/Resources/js/lib/sweetalert2.min.js"></script>
+<script src="~/Resources/js/lib/kavie.js"></script>
+
+<script src="~/Resources/js/Shared/knockout-helpers.js"></script>
+<script src="~/Resources/js/Shared/LightboxSelection.js"></script>
+<script src="~/Resources/js/Shared/ValidatePinModel.js"></script>
+
+<script src="~/Resources/js/Checkin/SelectEventModel.js"></script>
+<script src="~/Resources/js/Checkin/ManualTagPrintModel.js"></script>
+
+<script src="~/Resources/js/Checkin/ViewHouseholds.js"></script>
+
+<script>run()</script>

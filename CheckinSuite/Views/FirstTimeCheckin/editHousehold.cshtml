@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.Title = "Edit Your Family";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .save-button {
+        margin-top:4rem;
+        font-size:1.2rem;
+    }
+
+    .content-header {
+        font-size: 1.7rem;
+    }
+    
+    
+</style>
+
+<div class="center-constrained margin-top pb3">
+        <div class="content-header w2 center mt2">Adults</div>
+
+        <div class="grid-container">
+            <!-- ko foreach: householdMembers -->
+            <div data-bind="if: householdPositionId == 1">
+                <div class="person-grid-block" data-bind="click: editPersonModel.showLightbox.bind($index())">
+                    <div style="width:100%">
+                        <i class="fa fa-user h2 ml1 mr1 fl"></i>
+                        <i class="edit-person-button fa fa-pencil"></i>
+                        <div class="mt1 pb2">
+                            <span data-bind="text: firstName"></span><br>
+                            <span class="h6" data-bind="text: lastName"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+            <div data-bind="click: addAdult, visible: adultCount() < 2" class="add-person-container"><i class="fa fa-user-plus fa-4x ml1 add-person-icon"></i><span class="add-person-text">Add Adult</span></div>
+        </div>
+
+        <div class="content-header w2 center">Children</div>
+        <div class="grid-container">
+            <!-- ko foreach: householdMembers -->
+            <div data-bind="if: householdPositionId != 1">
+                <div class="person-grid-block" data-bind="click: editPersonModel.showLightbox.bind($index())">
+                    <div style="width:100%">
+                        <span class="person-icon-guest-text" data-bind="if: householdPositionId == 5 || householdPositionId == 8">Guest</span>
+                        <i class="fa fa-user h2 ml1 mr1 fl"></i>
+                        <i class="edit-person-button fa fa-pencil"></i>
+                        <div class="mt1 pb2">
+                            <span data-bind="text: firstName"></span><br>
+                            <span class="h6" data-bind="text: lastName"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <div data-bind="click: addChild" class="add-person-container"><i class="fa fa-user-plus fa-4x ml1 add-person-icon"></i><span class="add-person-text">Add Child</span></div>
+
+            
+        </div>
+
+        <div class="center">
+            <input type="button" data-bind="click: submit" value="I'm Ready to Check-in" class="save-button pure-button pure-button-primary" />
+            <i class="loader fa fa-spinner fa-pulse fa-2x" style="display:none;"></i>
+        </div>
+    <input type="button" class="pure-button back-to-search-button " data-bind="click: backToSeachButtonClick" value="Back To Search" />
+
+</div>
+
+@* Add Adult Lightbox *@
+<div class="lightbox" data-bind="with: addAdultModel, visible: addAdultModel.lightboxVisible">
+    <div class="lightbox-content" data-bind="if: lightboxVisible">
+        <div class="close-button" data-bind="click: hideLightbox">
+            <i class="fa fa-times"></i>
+        </div>
+        <form class="pure-form center">
+            <input type="text" placeholder="First Name" data-bind="textInput: firstName, hasfocus: true, css:{'validation-error': firstName.hasError}" />
+            <input type="text" placeholder="Last Name" data-bind="textInput: lastName, css:{'validation-error': lastName.hasError}" />
+            <input type="text" placeholder="Date of Birth" data-bind="textInput: dateOfBirth, css:{'validation-error': dateOfBirth.hasError}" />
+
+            <br>
+            <input type="button" value="Select Gender" class="lightbox-button pure-button mt2" data-bind="click: selectGenderLightbox.showLightbox,
+                                                                                                      value: selectGenderLightbox.buttonText,
+                                                                                                      attr:{'style': 'background-color:' + selectGenderLightbox.buttonColor()},
+                                                                                                      css:{'validation-error': gender.hasError}">
+            <br>
+            <input type="button" class="pure-button mt2" value="Add Adult" data-bind="click: submit">
+        </form>
+
+
+
+        <div data-bind="template: {name: 'lightboxSelection-template', data: selectGenderLightbox}"></div>
+
+    </div>
+</div>
+
+@* Add Child Lightbox *@
+<div class="lightbox" data-bind="with: addChildModel, visible: addChildModel.lightboxVisible">
+    <div class="lightbox-content" data-bind="if: lightboxVisible, visible: !selectGradeVisible()">
+        <div class="close-button" data-bind="click: hideLightbox">
+            <i class="fa fa-times"></i>
+        </div>
+
+        <form class="pure-form">
+            <input type="text" data-bind="textInput: firstName, hasFocus: true, css:{'validation-error': firstName.hasError}" placeholder="First Name" />
+            <input type="text" data-bind="textInput: lastName, css:{'validation-error': lastName.hasError}" placeholder="Last Name" />
+            <input type="text" data-bind="textInput: dateOfBirth, css:{'validation-error': dateOfBirth.hasError}" placeholder="Date of Birth" />
+        </form>
+
+
+        <input type="button" value="Select Relation" class="lightbox-button pure-button mt3" data-bind="click: selectRelationLightbox.showLightbox,
+                                                                                                        value: selectRelationLightbox.buttonText,
+                                                                                                        attr:{'style': 'background-color:' + selectRelationLightbox.buttonColor()},
+                                                                                                        css:{'validation-error': relation.hasError}">
+        <br>
+        <input type="button" value="Select Gender" class="lightbox-button pure-button mt2" data-bind="click: selectGenderLightbox.showLightbox,
+                                                                                                      value: selectGenderLightbox.buttonText,
+                                                                                                      attr:{'style': 'background-color:' + selectGenderLightbox.buttonColor()},
+                                                                                                      css:{'validation-error': gender.hasError}">
+        <br>
+        <input type="button" value="Select Age/Grade" class="lightbox-button pure-button mt2" data-bind="click: selectGradeLightbox.showLightbox,
+                                                                                                         value: selectGradeLightbox.buttonText,
+                                                                                                         attr:{'style': 'background-color:' + selectGradeLightbox.buttonColor()},
+                                                                                                         css:{'validation-error': grade.hasError}">
+
+        <div data-bind="template: {name: 'lightboxSelection-template', data: selectRelationLightbox}"></div>
+        <div data-bind="template: {name: 'lightboxSelection-template', data: selectGenderLightbox}"></div>
+        <div data-bind="template: {name: 'lightboxSelection-template', data: selectGradeLightbox}"></div>
+
+        <input type="button" class="pure-button pure-button-primary mt3" value="Submit" data-bind="click: submit" />
+    </div>
+</div>
+
+
+
+
+@* Edit Person Lightbox *@
+<div class="lightbox" data-bind="visible: editPersonModel.lightboxVisible, with: editPersonModel">
+    <div class="lightbox-content">
+
+        <div class="center" style="font-size:2.5rem" data-bind="text: personName()"></div>
+
+
+        <div class="close-button" data-bind="click: hideLightbox">
+            <i class="fa fa-times"></i>
+        </div>
+        <form class="pure-form">
+            <div data-bind="foreach: questions">
+                <div data-bind="if: showQuestion">
+                    <div class="edit-person-option" style="color: #000" data-bind="click: $parent.questionClicked">
+                        <div data-bind="text: label"></div>
+                    </div>
+                    <div class="edit-person-body" data-bind="visible: isVisible">
+                        <div data-bind="text: elementLabel"></div>
+                        <div data-bind="if: elementType == 'textarea'">
+                            <textarea data-bind="textInput: userInput"></textarea>
+                        </div>
+                        <div data-bind="if: elementType != 'textarea'">
+                            <input data-bind="textInput: userInput, attr:{type: elementType}" />
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            Phone number to call if we have questions<br />
+            <input style="color:#000" class="center block-small" data-bind="textInput: contactPhone, css:{'validation-error': contactPhone.hasError}" /><br />
+            <br />
+            <input type="submit" value="Submit" data-bind="click: submit" class="pure-button pure-button-primary" />
+        </form>
+
+    </div>
+</div>
+
+
+
+<script src="~/Resources/js/lib/sweetalert2.min.js"></script>
+<script src="~/Resources/js/lib/moment.js"></script>
+<script src="~/Resources/js/lib/dentist.js"></script>
+
+<script src="~/Resources/js/lib/knockout.js"></script>
+<script src="~/Resources/js/lib/kavie.js"></script>
+<script src="~/Resources/js/lib/ko-forced-format.js"></script>
+<script src="~/Resources/js/Shared/knockout-helpers.js"></script>
+
+<script src="~/Resources/js/Shared/LightboxSelection.js"></script>
+
+<script src="~/Resources/js/FirstTimeCheckin/EditHousehold/EditPersonModel.js"></script>
+<script src="~/Resources/js/FirstTimeCheckin/EditHousehold/SelectGroupModel.js"></script>
+<script src="~/Resources/js/FirstTimeCheckin/EditHousehold/AddAdultModel.js"></script>
+<script src="~/Resources/js/FirstTimeCheckin/EditHousehold/AddChildModel.js"></script>
+
+<script src="~/Resources/js/FirstTimeCheckin/EditHousehold/EditHousehold.js"></script>
+
+<script>
+    var currentURL = document.URL;
+    var params = currentURL.extract();
+
+    var viewModel = new FirstTimeCheckinViewModel(@ViewBag.householdId, params.programIds);
+    ko.applyBindings(viewModel);
+</script>
