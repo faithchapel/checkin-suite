@@ -45,6 +45,9 @@ We added a table called Data_Notes. Any data checkin adds/modifies will go in he
 |Closed        |bit           |                         | True       | has this data note been followed up on |
 |Domain_ID     |int           |                         | False      | the domain id |
 
+### Stored Procedures and Functions
+A stored procedure and function are located in the SQL folder of the project. Both of these need to be deployed to your SQL database for this project to function.
+
 # Data Notes
 Data notes are created when data is either modified or created. This allows for somone to review these changes to make sure there are no duplicates and everything is correct. 
 
@@ -92,5 +95,4 @@ This data note is created when a pin is used to manually check someone in
 | ContactPhone | null |
 | RecordedBy | {User_Id of whose pin was used} |
 
-#### Stored Procedures and Functions
-A stored procedure and function are located in the SQL folder of the project. Both of these need to be deployed to your SQL database for this project to function.
+
