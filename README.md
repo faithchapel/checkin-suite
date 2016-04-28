@@ -22,7 +22,7 @@ Change the variables to reflect your API credentials and settings in your enviro
 
 # Database Modifications
 
-We added a few things to the exsisting ministry platform database for this application to use. For checkin-suite to work you will make these changes.
+We added a few things to the existing ministry platform database for this application to use. For checkin-suite to work you will make these changes.
 
 ### Users
 In the users table we added a Pin field. Simply add the following to the dp_Users table
@@ -91,3 +91,6 @@ This data note is created when a pin is used to manually check someone in
 | Note | "[Added To Group: {groupId}]" |
 | ContactPhone | null |
 | RecordedBy | {User_Id of whose pin was used} |
+
+#### Stored Procedures and Functions
+A stored procedure and function are located in the SQL folder of the project. Both of these need to be deployed to your SQL database for this project to function.
