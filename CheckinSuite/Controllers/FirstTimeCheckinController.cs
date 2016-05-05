@@ -143,6 +143,9 @@ namespace CheckinSuite.Controllers
                         }
                         else if (child.Relation == ChildHouseholdMember.RelationTypes.Grandchild || child.Relation == ChildHouseholdMember.RelationTypes.Guest)
                         {
+                            // In this situation, we are creating a new household for this child. In the household we want them to be a child, not a grandchild/guest like it is now
+                            child.HouseholdPositionId = 2;
+
                             child.HouseholdId = MinistryPlatform.CreateHousehold(child);
                             MinistryPlatform.CreatePerson(child);
                             MinistryPlatform.CreateGroupParticipant(child);
