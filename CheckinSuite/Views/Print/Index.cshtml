@@ -91,11 +91,9 @@
 
         window.print();
         $(".print-area").hide();
-        
-        var idleManager = new IdleListenerManager();
-        idleManager.add(function () {
-            window.location = '@ViewBag.redirectUrl';
-        }, 5000);
 
+        setTimeout(function () {
+            window.location = '@ViewBag.redirectUrl';
+        }, 1000);
     });
 </script>

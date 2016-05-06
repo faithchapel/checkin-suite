@@ -150,8 +150,7 @@ function FirstTimeCheckinViewModel(householdId, programIds) {
         }
     });
 
-    var idleManager = new IdleListenerManager();
-    idleManager.add(function () {
+    IdleListener.add(function () {
         var stationType = Cookies.get('stationType');
         if (stationType == "checkin") {
             redirectWithPreserve('/Checkin/Index');

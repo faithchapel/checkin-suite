@@ -68,16 +68,15 @@
         });
     }
 
-    var idleManager = new IdleListenerManager();
-    idleManager.add(function () {
+    setInterval(function () {
         self.getLiveEvents();
     }, 60000);
 
-    idleManager.add(function () {
+    IdleListener.add(function () {
         Kavie.deactivate(self);
     }, 5000);
 
-    idleManager.add(function () {
+    IdleListener.add(function () {
         var stationType = Cookies.get('stationType');
         if (stationType) {
             if (stationType == "firstTimeCheckin") {

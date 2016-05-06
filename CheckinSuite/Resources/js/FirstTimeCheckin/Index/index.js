@@ -58,10 +58,7 @@
         });
     }
 
-    
-
-    var manager = new IdleListenerManager();
-    manager.add(function () {
+    IdleListener.add(function () {
         var stationType = Cookies.get('stationType');
         if (stationType) {
             if (stationType == "checkin") {

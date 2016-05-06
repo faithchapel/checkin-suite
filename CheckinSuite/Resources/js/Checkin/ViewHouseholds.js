@@ -209,8 +209,7 @@ function ViewHouseholdsViewModel(data) {
         window.location = "/Checkin/Index?programIds=" + self.programIds;
     }
 
-    var idleManager = new IdleListenerManager();
-    idleManager.add(function () {
+    IdleListener.add(function () {
         var stationType = Cookies.get('stationType');
         if (stationType == "firstTimeCheckin") {
             window.location = "/FirstTimeCheckin/Index?programIds=" + self.programIds;

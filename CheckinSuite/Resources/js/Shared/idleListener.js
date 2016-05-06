@@ -1,38 +1,25 @@
-﻿
-(function () {
+﻿;(function (ns) {
 
-    this.IdleListenerManager = function () {
-        var self = this;
-        self.idleListeners = [];
+    var listeners = [];
 
-        window.onmousemove = resetTimer;
-        window.onmousedown = resetTimer;
-        window.onclick = resetTimer;
-        window.onscroll = resetTimer;
-        window.onkeypress = resetTimer;
-
-        function resetTimer() {
-            for (var i = 0; i < self.idleListeners.length; i++) {
-                self.idleListeners[i].reset();
-            }
-        }
+    ns.add = function add(handler, timeout) {
+        listeners.push({
+            handler: handler,
+            timeout: timeout,
+            timer: setTimeout(handler, timeout)
+        });
     }
 
-    IdleListenerManager.prototype.add = function (idleFunction, timeoutLength) {     
-        this.idleListeners.push(new IdleListener(idleFunction, timeoutLength));
+    ns.reset = function reset() {
+        listeners.forEach(function (listener) {
+            clearTimeout(listener.timer);
+            listener.timer = setTimeout(listener.handler, listener.timeout);
+        });
     }
 
-    this.IdleListener = function (idleFunction, timeoutLength) {
-        this.idleFunction = idleFunction;
-        this.timeoutLength = timeoutLength;
+    document.addEventListener('click', ns.reset);
+    document.addEventListener('mousemove', ns.reset);
+    document.addEventListener('mousedown', ns.reset);
+    document.addEventListener('keypress', ns.reset);
 
-        this.interval = setInterval(this.idleFunction, this.timeoutLength);
-    }
-
-    IdleListener.prototype.reset = function () {
-       clearInterval(this.interval);
-       this.interval = setInterval(this.idleFunction, this.timeoutLength);
-    }
-
-}());
-
+}(this.IdleListener = this.IdleListener || {}));
