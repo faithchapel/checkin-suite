@@ -19,8 +19,6 @@ namespace CheckinSuite
         static mpapi.apiSoapClient api = new mpapi.apiSoapClient();
 
 
-
-
         private static string formatName(string name){
             name = name.ToLower().Trim();
             return name.Substring(0, 1).ToUpper() + name.Substring(1);
@@ -99,6 +97,11 @@ namespace CheckinSuite
         {
             return GetInformationFromDatabase("Task=GetContact&SearchString=" + contactData.FirstName + "&SearchStringB=" + contactData.LastName + "&SearchStringC=" + contactData.DateOfBirth);
         }
+
+        public static string GetHouseholdName(int householdId) {
+            return GetInformationFromDatabase("Task=GetHouseholdName&SearchID=" + householdId).Rows[0]["Household_Name"].ToString();
+        }
+
 
         public static DataTable GetGradeGroups()
         {

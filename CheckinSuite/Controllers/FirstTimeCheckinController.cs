@@ -106,7 +106,9 @@ namespace CheckinSuite.Controllers
                         {
                             MinistryPlatform.CreateGroupParticipant(child);
 
-                            MinistryPlatform.CreateDataNote(child.ContactId.Value, "Existing Contact Added to Household", "A Contact_Household record was created to pair this contact to " + data.HouseholdId + " household. If this is correct reassign this contact to the new household, otherwise change Other Household relationship to 'Guest' or 'Grandchild'.", "", ConfigurationManager.AppSettings["FirstTimeCheckinUserID"]);
+                            string householdName = MinistryPlatform.GetHouseholdName(data.HouseholdId);
+
+                            MinistryPlatform.CreateDataNote(child.ContactId.Value, "Existing Contact Added to Household", "A Contact_Household record was created to pair this contact to " + householdName + " [#" + data.HouseholdId + "] household. If this is correct reassign this contact to the new household, otherwise change " + householdName + "Other Household relationship to 'Guest' or 'Grandchild'.", "", ConfigurationManager.AppSettings["FirstTimeCheckinUserID"]);
                             MinistryPlatform.CreateShowsInCheckinWithEndDate(child, data.HouseholdId);
                         }
                         else if (child.Relation == ChildHouseholdMember.RelationTypes.Grandchild || child.Relation == ChildHouseholdMember.RelationTypes.Guest)
