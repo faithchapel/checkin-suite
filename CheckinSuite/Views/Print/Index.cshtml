@@ -92,7 +92,7 @@
         window.print();
         $(".print-area").hide();
 
-        setTimeout(function () {
+        IdleListener.add(function () {
             window.location = '@ViewBag.redirectUrl';
         }, 1000);
     });

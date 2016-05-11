@@ -102,7 +102,6 @@ namespace CheckinSuite
             return GetInformationFromDatabase("Task=GetHouseholdName&SearchID=" + householdId).Rows[0]["Household_Name"].ToString();
         }
 
-
         public static DataTable GetGradeGroups()
         {
             return GetInformationFromDatabase("Task=GetGroups");
@@ -250,8 +249,6 @@ namespace CheckinSuite
 
         private static DataTable GetInformationFromDatabase(string requestString)
         {
-
-
             DataSet storedProcResult = api.ExecuteStoredProcedure(apiGUID, apiPassword, "api_Faith_CheckInSuite", requestString);
 
             DataTable dTable = storedProcResult.Tables[0];
