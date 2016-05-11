@@ -6,6 +6,8 @@ This application interfaces with ministry platform to check people into events, 
 ### Service Reference
 To configure the application, first open the Visual Studio project. 
 
+Click Service References, Right Click mpapi, Click delete
+
 Click Project->Add Service Reference.
 
 Add your MP Soap API service URL in the Address field.
