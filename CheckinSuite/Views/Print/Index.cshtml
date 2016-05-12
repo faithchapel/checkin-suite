@@ -92,7 +92,7 @@
         window.print();
         $(".print-area").hide();
 
-        IdleListener.add(function () {
+        setInterval(function () { // setTimeout for some strange reason isn't working
             window.location = '@ViewBag.redirectUrl';
         }, 1000);
     });
