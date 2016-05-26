@@ -48,68 +48,48 @@ We added a table called Data_Notes. Any data checkin adds/modifies will go in he
 |Domain_ID     |int           |                         | False      | the domain id |
 
 ### Data Note Types
-| Field Title  | Field Type   | Relation                | Allow Null | Description  |
-| ------------ | ------------ | ----------------------- | ---------- | ------------ |
-| Data_Note_Type_ID | int     |                         | False      |              |
-| Data_Note_Type | varchar(50)|                         | False      | The title of this data note |
-| Data_Note_Type_Description | int     |                         | False      |  What this data note means|
-|Domain_ID     |int           |                         | False      | the domain id |
+This table called Data_Note_Types organizes the different types of data notes
+
+| Field Title                | Field Type  | Relation                | Allow Null | Description  |
+| -------------------------- | ----------- | ----------------------- | ---------- | ------------ |
+| Data_Note_Type_ID          | int         |                         | False      |              |
+| Data_Note_Type             | varchar(50) |                         | False      | The title of this data note |
+| Data_Note_Type_Description | int         |                         | False      |  What this data note means |
+| Domain_ID                  | int         |                         | False      | the domain id |
+
+####Rows
+You must add these to the Data_Note_Types Table
+
+| Data_Note_Type_ID | Data_Note_Type |
+| ----------------- | -------------- |
+|         1         | New Person Created    |
+|         2         | New Person + Household Created |
+|         3         | Existing Adult Request to Be Added to Household |
+|         4         | Existing Child Added to Household |
+|         5         | Check-In Override  |
+|         6         | User Requested Change |
+
+
 
 ### Data Note Statuses
+This table called Data_Note_Statuses has different states data notes can be in
+
 | Field Title  | Field Type   | Relation                | Allow Null | Description  |
 | ------------ | ------------ | ----------------------- | ---------- | ------------ |
 | Data_Note_Status_ID | int   |                         | False      |              |
 | Status | varchar(50)        |                         | true       | Current status of this note |
 |Domain_ID     |int           |                         | False      | the domain id |
 
+#### Rows
+You must add these to the Data_Note_Statuses table
+
+| Data_Note_Status_ID  | Status |
+| -------------------- | ------ |
+|         1            | New    |
+|          2           | Waiting For Information |
+|         3            | Closed           |
+
 ### Stored Procedures and Functions
 A stored procedure and function are located in the SQL folder of the project. Both of these need to be deployed to your SQL database for this project to function.
-
-## Data Notes
-Data notes are created when data is either modified or created. This allows for somone to review these changes to make sure there are no duplicates and everything is correct. 
-
-### Types
-There are a few different types of data notes
-
-#### New Contact Created
-Whenever checkinsuite creates a new contact and participant, this data notes is created
-
-| Field | Description |
-| ----- | ------------|
-| RelatedContact | {the contactId that was created} |
-| Header | "New Contact Created" |
-| Note | "Contact and Participant created" |
-| ContactPhone | null |
-
-#### User Requested Change
-When the user has edited a contact in their family these notes are created
-
-| Field | Description |
-| ----- | ------------|
-| RelatedContact | {the contactId who wants to be edited} |
-| Header | "User Requested Changed" |
-| Note | {topic} [{topic text}: {users response}] |
-| ContactPhone | {phone to contact} |
-
-#### Existing Contact Added to Household
-When a child that already exists is added to a family, this data note is created
-
-| Field | Description |
-| ----- | ------------|
-| RelatedContact | {contactId of the child who was added to a household} |
-| Header | "Existing Contact Added to Household" |
-| Note | "A Contact_Household record was created to pair this contact to {householdId} household. If this is correct reassign this contact to the new household, otherwise change Other Household relationship to 'Guest' or 'Grandchild'." |
-| ContactPhone | null |
-
-#### Tag Override
-This data note is created when a pin is used to manually check someone in
-
-| Field | Description |
-| ----- | ------------|
-| RelatedContact | {contactId of who checked in} |
-| Header | "Tag Override" |
-| Note | "[Added To Group: {groupId}]" |
-| ContactPhone | null |
-| RecordedBy | {User_Id of whose pin was used} |
 
 
