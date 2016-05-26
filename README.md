@@ -38,19 +38,34 @@ We added a table called Data_Notes. Any data checkin adds/modifies will go in he
 
 | Field Title  | Field Type   | Relation                | Allow Null | Description  |
 | ------------ | ------------ | ----------------------- | ---------- | ------------ |
-|DataNoteID    |int           |                         | False      | the foreign key |
+|DataNoteID    |int           |                         | False      | the primary key |
 |RelatedContact|int           |Contact_ID               | False      | the contact that this data note relates to |
-|Header        |nvarchar(50)  |                         | True       | a basic generalization of what this note is about |
+|Data_Note_Type_ID|int        |Data_Note_Type_ID        | True       | a reference to what kind of data note this is |
 |Note          |nvarchar(MAX) |                         | True       | the information about this note |
 |ContactPhone  |invarchar(13) |                         | True       | a phone number to call for questions |
 |RecordedBy    |int           |User_ID                  | True       | who made this data note |
-|Closed        |bit           |                         | True       | has this data note been followed up on |
+|Data_Note_Status_ID|int      |                         | True       | the current status of this data note |
+|Domain_ID     |int           |                         | False      | the domain id |
+
+### Data Note Types
+| Field Title  | Field Type   | Relation                | Allow Null | Description  |
+| ------------ | ------------ | ----------------------- | ---------- | ------------ |
+| Data_Note_Type_ID | int     |                         | False      |              |
+| Data_Note_Type | varchar(50)|                         | False      | The title of this data note |
+| Data_Note_Type_Description | int     |                         | False      |  What this data note means|
+|Domain_ID     |int           |                         | False      | the domain id |
+
+### Data Note Statuses
+| Field Title  | Field Type   | Relation                | Allow Null | Description  |
+| ------------ | ------------ | ----------------------- | ---------- | ------------ |
+| Data_Note_Status_ID | int   |                         | False      |              |
+| Status | varchar(50)        |                         | true       | Current status of this note |
 |Domain_ID     |int           |                         | False      | the domain id |
 
 ### Stored Procedures and Functions
 A stored procedure and function are located in the SQL folder of the project. Both of these need to be deployed to your SQL database for this project to function.
 
-# Data Notes
+## Data Notes
 Data notes are created when data is either modified or created. This allows for somone to review these changes to make sure there are no duplicates and everything is correct. 
 
 ### Types
